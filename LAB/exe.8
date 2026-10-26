@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char text[100], key[] = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    int i;
+
+    printf("Enter plaintext: ");
+    scanf("%s", text);
+
+    printf("Ciphertext: ");
+
+    for (i = 0; text[i] != '\0'; i++)
+    {
+        char ch = toupper(text[i]);
+
+        if (ch >= 'A' && ch <= 'Z')
+            printf("%c", key[ch - 'A']);
+    }
+
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char cipher[1000];
+    int freq[26] = {0};
+    int i, first = 0, second = 0;
+
+    printf("Enter ciphertext: ");
+    scanf("%s", cipher);
+
+    for (i = 0; cipher[i] != '\0'; i++)
+    {
+        char ch = cipher[i];
+        if (ch >= 'a' && ch <= 'z')
+            ch -= 32;
+
+        if (ch >= 'A' && ch <= 'Z')
+            freq[ch - 'A']++;
+    }
+
+    for (i = 0; i < 26; i++)
+    {
+        if (freq[i] > freq[first])
+        {
+            second = first;
+            first = i;
+        }
+        else if (i != first && freq[i] > freq[second])
+            second = i;
+    }
+
+    printf("Most frequent letter: %c\n", first + 'A');
+    printf("Second most frequent letter: %c\n", second + 'A');
+
+    printf("Possible plaintext letters: E and T\n");
+    printf("Use frequency analysis to determine the key.\n");
+
+    return 0;
+}
